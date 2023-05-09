@@ -13,7 +13,7 @@ const MarketPage = ({
     profileData
 }) => {
 
-    const { social } = profileData;
+    // const { social } = profileData;
  
     return (
         <>
