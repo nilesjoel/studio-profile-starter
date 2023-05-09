@@ -10,6 +10,7 @@ import type { NextApiRequest, NextApiResponse } from "next"
 export async function getArtistData(req: NextApiRequest, res: NextApiResponse) {
     const token = await getServerSession(req, res, authOptions)
     // console.log({ token })
+    console.log(`${process.env.NEXTAUTH_API}/studio-artist/artist`)
     try {
         const response = await fetch(`${process.env.NEXTAUTH_API}/studio-artist/artist`, {
             method: 'GET',
