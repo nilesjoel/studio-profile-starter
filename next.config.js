@@ -12,7 +12,6 @@
       },
       images: {
         domains: ["res.cloudinary.com"],
-      },
-      env,
+      }
     }
   }
