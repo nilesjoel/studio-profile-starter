@@ -5,6 +5,7 @@ export async function getProfileData(req, res){
   // Get Token from request and send to API to get profile data.
   try {
     const token = await getToken({ req })    
+    console.log("fetching..", `${process.env.NEXTAUTH_API}/studio-profile/profile`)
     const response = await fetch(`${process.env.NEXTAUTH_API}/studio-profile/profile`, {
       method: 'POST',
       headers: {
