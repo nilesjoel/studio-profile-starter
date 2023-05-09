@@ -1,0 +1,1 @@
+export { StyledIconWrapper } from './StyledIconWrapper'

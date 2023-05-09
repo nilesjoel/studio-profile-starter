@@ -1,0 +1,1 @@
+export { StyledFieldLabel } from './StyledFieldLabel'

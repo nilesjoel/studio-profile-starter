@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "incremental": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "resolveJsonModule": true,
+    "moduleResolution": "node",
+    "isolatedModules": true,
+    "jsx": "preserve"
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/api/auth/[...nextauth].js", "pages/api/examples/profile.js", "components/_archive/FinalFormExample.jsx", "components/Test/form.elements.js", "pages/example/form-example.jsx", "components/DataSymmetry/SymmetryFields.js", "pages/example/DataSymmetry.jsx", "components/Form/DataSymmetry.jsx"],
+  "exclude": ["node_modules"]
+}
