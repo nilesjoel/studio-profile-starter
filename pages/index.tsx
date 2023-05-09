@@ -9,7 +9,7 @@ import { getProfileData } from "./api/profile";
 import { DualPanelLayout } from "../components/Shared/DualPanelLayout";
 
 const IndexPage = ({
-  session2, profileData
+  // session2, profileData
 }) => {
 
   const { data: session } = useSession()
@@ -41,7 +41,8 @@ const IndexPage = ({
       return false;
     }
     return (
-      <div><h1>{profileData.user.email}</h1>
+      <div>
+        {/* <h1>{profileData.user.email}</h1> */}
         <Link href="/api/auth/signout">
           <button
             onClick={(e) => {
@@ -93,12 +94,13 @@ const IndexPage = ({
 
 // This gets called on every request
 export async function getServerSideProps(context) {
-  // DEfine the Request
-  const { req, res } = context;
-  // Get the Profile Data
-  const data = await getProfileData(req, res);
-  // Return the Profile Data to the Page
-  return { props: { profileData: data } }
+  // // DEfine the Request
+  // const { req, res } = context;
+  // // Get the Profile Data
+  // const data = await getProfileData(req, res);
+  // // Return the Profile Data to the Page
+  // return { props: { profileData: data } }
+  return { props: {} }
 }
 
 
