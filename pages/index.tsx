@@ -29,7 +29,7 @@ const IndexPage = ({
               signIn();
             }}
           >
-            Signeth In
+            Signeth On In
           </button>
         </Link>
       </div>
