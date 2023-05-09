@@ -13,6 +13,7 @@ export async function getProfileData(req, res){
       body: JSON.stringify(token)
     });
     const data = await response.json();
+    console.log("returned", {data})
     return data;
   } catch (error) {
     console.log("ERROR", error)
