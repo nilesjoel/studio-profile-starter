@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import chroma from 'chroma-js'
-import { colors } from '../utilities'
+import { colors } from '../../styles/utilities'
 // USING REBASS OR ANOTHER COMPONENT LIBRARY AS A BASIS FOR BASE COMPONENTS.
 import { Button } from 'rebass/styled-components'
 
