@@ -24,21 +24,7 @@ const ArtworksPage = ({
     // console.log({ artworksData })
     const [text, setText] = useState('');
 
-    const handleClick = async (param) => {
-        try {
-            // const res = await fetch('/api/social/publish', {
-            //     method: 'POST',
-            //     body: JSON.stringify({ data: param }),
-            //     headers: {
-            //         'Content-Type': 'application/json',
-            //     },
-            // });
-            // const data = await res.json();
-            // setText(data.message);
-        } catch (error) {
-            console.error(error);
-        }
-    };
+
     const { artworks } = artworksData;
     return (
         <>
@@ -49,21 +35,16 @@ const ArtworksPage = ({
                 leftPanel={
                     <>
                         <Typography medium>plugin/artist</Typography>
-                        {/* <Typography menu><Link href={"/plugins/artist"}>Artist</Link></Typography> */}
+                        <Typography menu><Link href={"/plugins/artist"}>Artist</Link></Typography>
                     </>
                 }
                 rightPanel={
                     <>
-
                         <Typography heading>Artworks</Typography>
                         <StyledPhotoGrid>
                             {artworks.map((artwork, idx) => <div key={idx}>
-                                <StudioImage src={artwork.cover['thumbnail'].url} height={artwork.cover['thumbnail'].height} width={artwork.cover['thumbnail'].width} alt="demo"></StudioImage>
-                                
+                                <StudioImage src={artwork.cover['thumbnail'].url} height={artwork.cover['thumbnail'].height} width={artwork.cover['thumbnail'].width} alt="demo" />
                                 <h1>{artwork.caption}</h1>
-
-                                {/* <StyledButton onClick={() => handleClick(artwork.cover.large.url)}>Click me</StyledButton> */}
-
                             </div>)}
                         </StyledPhotoGrid>
                     </>

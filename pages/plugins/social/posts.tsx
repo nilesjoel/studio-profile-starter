@@ -12,17 +12,11 @@ import styled from "styled-components";
 import StudioImage from "../../../components/Image/StudioImage";
 import { StyledButton } from "../../../components/Button/Button.styled";
 import InstagramPost from "../../../components/Image/InstagramPost";
+import { SocialPostPanel } from "../../../components/Plugin/SocialPostPanel";
 
 const StyledPhotoGrid = styled.div`
     display:flex;
 
-`
-const StyledPost = styled.div`
-    display:flex;
-    flex-direction:column;
-    flex:1;
-    justify-content: space-between;
-    align-items:flex-start;
 `
 
 const SocialPostsPage = ({ postsData }) => {
@@ -68,16 +62,7 @@ const SocialPostsPage = ({ postsData }) => {
                         <StyledPhotoGrid>
 
                             {postsData.map((post, idx) =>
-                                <StyledPost key={idx}>
-                                    <Typography menu>{post.name}</Typography>
-                                    <InstagramPost src={post.media.large.url} 
-                                    height={200} width={200}
-                                    // height={post.media.large.height} 
-                                    // width={post.media.large.width} 
-                                    alt={post.name}></InstagramPost>
-                                    <Typography small>{post.caption}{post.media.large.height}</Typography>
-                                    <StyledButton onClick={() => handleClick(post.media.large.url)}>Post</StyledButton>
-                                </StyledPost>
+                                <SocialPostPanel key={idx} post={post} handleClick={()=>console.log("clicked")} />
                             )}
 
                         </StyledPhotoGrid>

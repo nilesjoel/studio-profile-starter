@@ -15,6 +15,6 @@
     "isolatedModules": true,
     "jsx": "preserve"
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/api/auth/[...nextauth].js", "pages/api/examples/profile.js", "components/_archive/FinalFormExample.jsx", "components/Test/form.elements.js", "pages/example/form-example.jsx", "components/DataSymmetry/SymmetryFields.js", "pages/example/DataSymmetry.jsx", "components/Form/DataSymmetry.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/api/auth/[...nextauth].js", "pages/api/examples/profile.js", "components/_archive/FinalFormExample.jsx", "components/Test/form.elements.js", "pages/example/form-example.jsx", "components/DataSymmetry/SymmetryFields.js", "pages/DataSymmetry.jsx", "components/Form/DataSymmetry.jsx"],
   "exclude": ["node_modules"]
 }

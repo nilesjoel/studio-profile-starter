@@ -47,20 +47,20 @@ export function StudioContextProvider({ children, state }: StudioContextProvider
     }
 
     const contextData: StudioContextData & { darkTheme: boolean } = { ...state, darkTheme };
-
+console.log({contextData})
 
     // fetch a context from Studio Symmetries API
     useEffect(() => {
         const fetchUser = () => {
 
-            fetch(`https://dashboard.studiosymmetries.com/studio-artist/artist`)
-                .then((response) => response.json())
-                .then((data) => {
+            // fetch(`https://dashboard.studiosymmetries.com/studio-artist/artist`)
+            //     .then((response) => response.json())
+            //     .then((data) => {
                  
                  
-                    // console.log(data)
-                })
-                .catch((error) => console.log('An error occurred'));
+            //         // console.log(data)
+            //     })
+            //     .catch((error) => console.log('An error occurred'));
         };
 
         fetchUser();

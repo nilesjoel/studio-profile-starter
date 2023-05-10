@@ -27,10 +27,6 @@ const TagsPage = ({
                 rightPanel={
                     <>
                        <Typography large>Tags</Typography>
-{/*                             
-                            <Typography medium>{artistData.name}</Typography>
-                            <Typography small>{artistData.description}</Typography> */}
-                    
                     </>
                 } />
         </>

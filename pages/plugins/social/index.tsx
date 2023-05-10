@@ -1,63 +1,87 @@
-import { getSession, signIn, signOut } from "next-auth/react";
 import Head from 'next/head';
 import Link from "next/link";
-import React, { useState} from "react";
-
-import { getProfileData } from "../../api/profile";
+import React from "react";
+import { getSocialCampaignsData } from '../../api/social/campaign';
 import { DualPanelLayout } from "../../../components/Shared/DualPanelLayout";
 import { Typography } from '../../../components/Shared/Typography';
-import ObjectTable from "../../../components/Table/ObjectTable";
 import { StyledPanel, StyledPanelLabel, StyledPanelDetails, StyledColumns } from "../../../components/Data/data.elements";
-import Dropdown from '../../../components/Shared/Dropdown';
-const MarketPage = ({
-    profileData
-}) => {
-
-    // const { social } = profileData;
- 
-    return (
-        <>
-            <Head>
-                <title>Studio Social</title>
-            </Head>
-            <DualPanelLayout
-                leftPanel={
-                    <>
-                        <Typography medium>plugin/social</Typography>
-                        <Typography menu><Link href={"/plugins/social/channels"}>Channels</Link></Typography>
-                        <Typography menu><Link href={"/plugins/social/campaigns"}>Campaigns</Link></Typography>
-                        <Typography menu><Link href={"/plugins/social/posts"}>Posts</Link></Typography>
-                        <Typography menu>
-                     
-                        </Typography>
-                    </>
-                }
-                rightPanel={
-                    <>
-                        <Typography heading>Social</Typography>
-                        <StyledPanel>
-                            <StyledPanelLabel>
-
-                            </StyledPanelLabel>
-                        </StyledPanel>
-                    </>
-                } />
+import { SocialPostPanel } from '../../../components/Plugin/SocialPostPanel';
 
 
-        </>
-    );
-};
+const SocialCampaignsPage = ({ campaignsData }) => {
+
+    const { name, frequency, posts, channels, user } = campaignsData;
+    return (<>
+        <Head>
+            <title>Studio Social</title>
+        </Head>
+        <DualPanelLayout leftPanel={
+                <>
+                    <Typography medium><Link href={"/plugins/social"}>plugin/social</Link></Typography>
+                    <Typography menu><Link href={"/plugins/social/channels"}>Channels</Link></Typography>
+                    <Typography menu><Link href={"/plugins/social/campaigns"}>Campaigns</Link></Typography>
+                    <Typography menu><Link href={"/plugins/social/posts"}>Posts</Link></Typography>
+                </>
+            }
+            rightPanel={
+                <><Typography heading>Studio Social</Typography>
+                    <StyledPanel>
+                        <StyledPanelLabel>
+                            <Typography heading>Campaigns</Typography>
+                            {campaignsData.map((campaign, index) => {
+
+                                console.log({ campaign })
+                                return (
+                                    <div key={index}>
+                                        <>
+                                            <Typography small>{campaign.name}</Typography>
+                                            {/* <Typography>{campaign.frequency}</Typography> */}
+
+                                            <Typography heading>Posts</Typography>
+                                            {campaign.posts.map((post, idx) => {
+                                                console.log(idx, post)
+                                                return (
+                                                    <SocialPostPanel key={idx} post={post} handleClick={()=>console.log("clicked")} />
+                                                )
+                                            })}
+
+                                        </>
+                                        <Typography heading>Channels</Typography>
+                                        {campaign.channels.map((channel, index) => {
+                                            return (
+                                                <div key={index}>
+                                                    <Typography>{channel.name}</Typography>
+                                                    <Typography>{channel.type}</Typography>
+                                                    <Typography>{channel.url}</Typography>
+                                                    <Typography>{channel.token}</Typography>
+                                                </div>
+                                            )
+                                        })}
+
+
+                                        {/* <Typography>{JSON.stringify(campaign.user)}</Typography> */}
+                                    </div>
+
+                                )
+                            })}
+                        </StyledPanelLabel>
+                    </StyledPanel>
+                </>
+            } />
+    </>)
+}
+
+
 
 
 // This gets called on every request
 export async function getServerSideProps(context) {
-    // DEfine the Request
+    // Define the Request
     const { req, res } = context;
-    // Get the Profile Data
-    const data = await getProfileData(req, res);
+    // Get the Campaign Data
+    const data = await getSocialCampaignsData(req, res);
     // Return the Profile Data to the Page
-    return { props: { profileData: data } }
+    return { props: { campaignsData: data } }
 }
 
-
-export default MarketPage;
+export default SocialCampaignsPage;
