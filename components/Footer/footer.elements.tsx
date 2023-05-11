@@ -16,6 +16,7 @@ ${glory.style}
 // font-weight: 700;
 // font-style: normal;
 
+  color: ${({theme})=>theme.colors.primaryColor};
   background-color: ${({theme})=>theme.colors.secondaryColor};
   padding: 2rem 0 1rem 0;
   display: flex;
@@ -134,6 +135,7 @@ export const SocialMedia = styled.section`
 
 export const SocialMediaWrap = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
 //   margin: 40px auto 0 auto;

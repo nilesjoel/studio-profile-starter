@@ -20,7 +20,14 @@ import type { Session } from "next-auth"
 //   },
 // }
 
-const studioContext = {}
+// Import from datafiles generated from fetch-data.js
+import menu from '../config/menu-data.json'
+// Adds data from datafiles to the studioContext
+const studioContext = {
+  menu,
+  // artworks
+}
+
 const helmetContext = {};
 
 export default function App({

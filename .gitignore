@@ -39,3 +39,6 @@ next-env.d.ts
 /components/_archive/
 
 /pages/example/
+
+
+config/fetch-data.js

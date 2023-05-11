@@ -30,97 +30,25 @@ import {
 
 import Link from 'next/link'
 import { useRouter } from 'next/router';
+import { useStudioContext } from '../../contexts/StudioContext';
 
 export function Footer() {
 
   const router = useRouter();
 
 
+  const { 
+    menu,
+    footerSubscription,
+    footerLinks,
+    footerMenuSegments,
+    footerSocial,
+    siteBrandName,
+    socialLinks,
+    siteLinks,
+    footerCopyright,
+   } = useStudioContext();
 
-  const siteBrandName = "@nilesjoel";
-
-  const footerSubscription = {
-    display: false,
-    // subHeading : ` Follow your breath. Join our inclusive membership to receive reminders and to track your progress.`,
-    subHeading: ` Follow your breath. Enter your email to track your progress, and to receive optional reminders.`,
-    subText: `You can stop at any time.`,
-  };
-
-  const footerSocial = true;
-  const socialLinks = [
-    // {
-    //   name: 'Instagram',
-    //   icon: <FaInstagram />,
-    //   href: ''
-    // }, {
-    //   name: 'Facebook',
-    //   icon: <FaFacebook />,
-    //   href: ''
-    // },
-    // {
-    //   name: 'YouTube',
-    //   icon: <FaYoutube />,
-    //   href: ''
-    // },
-    // {
-    //     name: 'LinkedIn',
-    //     icon: <FaLinkedin/>,
-    //     href: ''
-    // },
-  ]
-
-
-  // const siteLinks = [{
-  //   _id: "604a633fa4a8ed922c21ba56",
-  //   title: "Index",
-  //   slug: "/profile",
-  //   published_at: "2021-03-11T18:36:52.034Z",
-  //   createdAt: "2021-03-11T18:36:47.253Z",
-  //   updatedAt: "2021-03-11T18:36:52.245Z",
-  //   __v: 0,
-  //   id: "604a633fa4a8ed922c21ba56"
-  // }];
-
-  const siteLinks = [
-    // {
-    //   title: "Artist",
-    //   slug: "/artist"
-    // },
-    // {
-    //   title: "Gallery",
-    //   slug: "/"
-    // },
-    // {
-    //   title: "Contact",
-    //   slug: "/contact"
-    // },
-
-    // {
-    //   title: "Swipe",
-    //   slug: "/swipe"
-    // },
-    // {
-    //   title: "Slides",
-    //   slug: "/slide"
-    // }
-  ];
-
-
-
-  const footerCopyright = `${siteBrandName} © ${new Date().getFullYear()}`;
-
-  const footerLinks = true;
-
-
-  const footerMenuSegments = [
-    {
-      title: "Site Links",
-      data: siteLinks
-    },
-    {
-      title: "Account Links",
-      // data: (session) ? profileLinks : null
-    }];
 
   return (
     <FooterContainer>
@@ -149,7 +77,7 @@ export function Footer() {
               <FooterLinksWrapper key={`linkWrapper_${idx}`}>
                 <FooterLinkItems key={`linkItems_${idx}`}>
 
-                  {/* <FooterLinkTitle  key={`linkTitle_${idx}`}>{menuSegment.title}</FooterLinkTitle> */}
+                  <FooterLinkTitle  key={`linkTitle_${idx}`}>{menuSegment.title}</FooterLinkTitle>
                   {menuSegment.data.map((data, idx) => (
                     <FooterLink key={`footerLink${idx}`}>
                       <Link href={`${data.slug}`}>{data.title}</Link>
@@ -164,18 +92,16 @@ export function Footer() {
         </FooterLinksContainer>
       )}
 
-
-
       {footerSocial && (
         <SocialMedia>
           <SocialMediaWrap>
 
 
-            {/* 
+            
             <SocialLogo>
               <SocialIcon/> {siteBrandName}
             </SocialLogo> 
-            */}
+           
 
             <SocialIcons>
               {socialLinks && socialLinks.map((socialMenuItem, idx) => (
