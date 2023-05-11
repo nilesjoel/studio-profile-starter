@@ -8,15 +8,15 @@ type StudioLinkData = {
 }
 type StudioContextData = {
     menu?: Array<StudioLinkData>,
-    footer,
-    footerSubscription,
-    footerLinks,
-    siteLinks,
-    socialLinks,
-    footerMenuSegments,
-    footerCopyright,
-    footerSocial,
-    siteBrandName
+    footer?,
+    footerSubscription?,
+    footerLinks?,
+    siteLinks?,
+    socialLinks?,
+    footerMenuSegments?,
+    footerCopyright?,
+    footerSocial?,
+    siteBrandName?
 };
 
 type StudioUpdateContextData = {
