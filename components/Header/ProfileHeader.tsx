@@ -142,7 +142,7 @@ export function ProfileHeader() {
                             {/* MENU SEGMENTS */}
                             {menu && menu.map((link) => {
                                 return (
-                                    <Link href={`${process.env.NEXTAUTH_URL}/${link.slug}`} key={link.uid}>
+                                    <Link href={`${process.env.NEXT_PUBLIC_URL}/${link.slug}`} key={link.uid}>
                                         <div className={router.pathname === link.slug ? 'active' : ''}>
                                             <HeaderItem>
                                                 <HeaderLinks onClick={closeMobileMenu}>
