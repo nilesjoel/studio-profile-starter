@@ -24,7 +24,7 @@ export default function SignIn({ providers, csrfToken }) {
   return (
     <Container maxW="xl" centerContent>
       <Heading as="h1" textAlign="center">
-        Profile
+        Signin
       </Heading>
       {`Dont worry, we'll bring you back here ${redirectUrl}`}
       <Box alignContent="center" justifyContent="center" marginTop={12}>
@@ -40,7 +40,7 @@ export default function SignIn({ providers, csrfToken }) {
         </Box>
         <Stack isInline marginTop={12}>
           {Object.values(providers).map((provider) => {
-            if (provider.name === "Email") {
+            if (provider.name.toLowerCase() !== "google") {
               return;
             }
             return (

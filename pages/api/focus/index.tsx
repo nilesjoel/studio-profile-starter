@@ -10,7 +10,7 @@ import { getToken } from "next-auth/jwt";
 export async function getFocusData(req: NextApiRequest, res: NextApiResponse) {
     const { jwt } = await getToken({ req });
     const token = await getServerSession(req, res, authOptions)
-    console.log({ url:`${process.env.NEXTAUTH_API}/studio-focus/entries/profile`,token })
+    console.log("FOCUSDATA", { url:`${process.env.NEXTAUTH_API}/studio-focus/entries/profile`,token })
     try {
         const response = await fetch(`${process.env.NEXTAUTH_API}/studio-focus/entries/profile`, {
             method: 'POST',

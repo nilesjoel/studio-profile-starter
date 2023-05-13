@@ -26,7 +26,7 @@ const {
       })(),
       NEXTAUTH_API: (() => {
         if (isDev) return process.env.NEXTAUTH_API_DEV
-        if (isProd) return process.env.NEXTAUT_API
+        if (isProd) return process.env.NEXTAUTH_API
       })(),
       NEXT_PUBLIC_URL : process.env.NEXT_PUBLIC_URL,
       NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,

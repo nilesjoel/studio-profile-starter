@@ -1,8 +1,9 @@
 import { DefaultTheme } from 'styled-components'
 
-const primaryColor = "rgb(250,240,230)";
-const secondaryColor = 'rgb(90 85 85)';
-const secondaryDark = 'rgb(175 167 159)';
+const primaryColor = 'rgb(250, 240, 230)';
+const secondaryColor = 'rgb(90, 85, 85)';
+const secondaryDark = 'rgb(175, 167, 159)';
+
 const darkColor = "brown";
 const primary = 'hsl(345deg 68.6% 37.08%)';
 const secondary = 'hsl(233,47%,7%)';
