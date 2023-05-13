@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {FiSun} from 'react-icons/fi';
+import {FiSun, FiUsers} from 'react-icons/fi';
 
 
 
@@ -156,7 +156,9 @@ export const SocialLogo = styled.div`
   margin-bottom: 16px;
 `;
 
-export const SocialIcon = styled(FiSun)`
+export const SocialIcon = styled(
+  FiUsers
+)`
   margin-right: 10px;
 `;
 

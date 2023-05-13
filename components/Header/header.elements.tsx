@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 
 import { roboto, glory, hachi, poppins, raleway } from '../../styles/fonts';
-import { FiSun } from 'react-icons/fi';
+import { FiUsers } from 'react-icons/fi';
 
 const Container = styled.div`
     display: flex;
@@ -50,7 +50,7 @@ const HeaderLogo = styled.div`
   display: flex;
   align-items: center;
 `;
-const HeaderIcon = styled(FiSun)`
+const HeaderIcon = styled(FiUsers)`
 // margin-right: 0.5rem;
 // display: block;
 // margin: 0 auto;
