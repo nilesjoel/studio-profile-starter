@@ -16,7 +16,8 @@ type StudioContextData = {
     footerMenuSegments?,
     footerCopyright?,
     footerSocial?,
-    siteBrandName?
+    siteBrandName?,
+    websiteData?,
 };
 
 type StudioUpdateContextData = {
@@ -49,13 +50,32 @@ type StudioContextProviderProps = {
 };
 
 export function StudioContextProvider({ children, state }: StudioContextProviderProps) {
+
     const [darkTheme, setDarkTheme] = useState(true);
+    const [menuData, setMenuData] = useState([]);
+    const [websiteData, setWebsiteData] = useState({});
+
+    const [ siteBrandName, setSiteBrandName ] = useState("");
+    const [ siteMenu, setSiteMenu ] = useState([]);
+    const [ siteMetadata, setSiteMetadata ] = useState([]);
+
+    // const [ siteLinks, setSiteLinks ] = useState([]);
+    // const [ socialLinks, setSocialLinks ] = useState([]);
+    // const [ footerMenuSegments, setFooterMenuSegments ] = useState([]);
+    // const [ footerSocial, setFooterSocial ] = useState([]);
+    // const [ footerLinks, setFooterLinks ] = useState([]);
+    // const [ footerSubscription, setFooterSubscription ] = useState([]);
+    // const [ footer, setFooter ] = useState([]);
+    // const [ footerCopyRight, setFooterCopyRight ] = useState([]);
+
+
+
+
 
     function toggleTheme() {
         setDarkTheme((prevDarkTheme) => !prevDarkTheme);
     }
 
-    const [menuData, setMenuData] = useState([]);
     const contextData: StudioContextData & { darkTheme: boolean } = { ...state, darkTheme };
 
     // fetch a context from Studio Symmetries API
@@ -65,100 +85,123 @@ export function StudioContextProvider({ children, state }: StudioContextProvider
                 .then((response) => response.json())
                 .then((json) => {
                     // console.log(json.error, "error?", json)
-                    if(!json.error){
+                    if (!json.error) {
                         setMenuData(json);
                     }
                 })
                 .catch((error) => console.log('An error occurred', error.message));
         };
+        const fetchWebContext = () => {
+            fetch(`/api/website/context`)
+                .then((response) => response.json())
+                .then((json) => {
+                    // console.log(json.error, "error?", json)
+                    if (!json.error) {
+                        setWebsiteData(json);
 
-        fetchUser();
+                        const {
+                            siteBrandName,
+                            metadata,
+                            menus
+                        } = json.websiteEntity;
+                        
+                        setSiteMenu(menus);
+                        setSiteBrandName(siteBrandName);
+                        setSiteMetadata(metadata);
+
+                    }
+                })
+                .catch((error) => console.log('An error occurred', error.message));
+        };
+        fetchWebContext();
+        // fetchUser();
     }, []);
 
 
+const test = {
+    siteLinks : [ // {
+        //   title: "Artist",
+        //   slug: "/artist"
+        // },
+        // {
+        //   title: "Gallery",
+        //   slug: "/"
+        // },
+        // {
+        //   title: "Contact",
+        //   slug: "/contact"
+        // },
 
-    const siteBrandName = "@nilesjoel";//
-    const footerSubscription = {
-      display: false,
-      // subHeading : ` Follow your breath. Join our inclusive membership to receive reminders and to track your progress.`,
-      subHeading: ` Follow your breath. Enter your email to track your progress, and to receive optional reminders.`,
-      subText: `You can stop at any time.`,
-    };
-    const footerSocial = true;
-    const socialLinks = [
-    //   {
-    //     name: 'Instagram',
-    //     icon: <FaInstagram />,
-    //     href: ''
-    //   }, {
-    //     name: 'Facebook',
-    //     icon: <FaFacebook />,
-    //     href: ''
-    //   },
-    //   {
-    //     name: 'YouTube',
-    //     icon: <FaYoutube />,
-    //     href: ''
-    //   },
-    //   {
-    //       name: 'LinkedIn',
-    //       icon: <FaLinkedin/>,
-    //       href: ''
-    //   },
+        // {
+        //   title: "Swipe",
+        //   slug: "/swipe"
+        // },
+        // {
+        //   title: "Slides",
+        //   slug: "/slide"
+        // }
+    ],
+    subscription : {
+        display: false,
+        // subHeading : ` Follow your breath. Join our inclusive membership to receive reminders and to track your progress.`,
+        subHeading: ` Follow your breath. Enter your email to track your progress, and to receive optional reminders.`,
+        subText: `You can stop at any time.`,
+    },
+    socialLinks : [
+        //   {
+        //     name: 'Instagram',
+        //     icon: <FaInstagram />,
+        //     href: ''
+        //   }, {
+        //     name: 'Facebook',
+        //     icon: <FaFacebook />,
+        //     href: ''
+        //   },
+        //   {
+        //     name: 'YouTube',
+        //     icon: <FaYoutube />,
+        //     href: ''
+        //   },
+        //   {
+        //       name: 'LinkedIn',
+        //       icon: <FaLinkedin/>,
+        //       href: ''
+        //   },
+    ],
+    footerMenuSegments : [
+        {
+            title: "Links",
+            data: 'siteLinks'
+        }
     ]
-    const siteLinks = [
-      // {
-      //   title: "Artist",
-      //   slug: "/artist"
-      // },
-      // {
-      //   title: "Gallery",
-      //   slug: "/"
-      // },
-      // {
-      //   title: "Contact",
-      //   slug: "/contact"
-      // },
+}
   
-      // {
-      //   title: "Swipe",
-      //   slug: "/swipe"
-      // },
-      // {
-      //   title: "Slides",
-      //   slug: "/slide"
-      // }
-    ];
+
+
+    // const siteBrandName = "@nilesjoel";//
+    const footerSocial = true;
     const footerCopyright = `${siteBrandName} © ${new Date().getFullYear()}`;
     const footerLinks = true;
-    const footerMenuSegments = [
-      // {
-      //   title: "Site Links",
-      //   data: siteLinks
-      // },
-      // {
-      //   title: "Account Links",
-      //   data: siteLinks
-      //   // data: (session) ? profileLinks : null
-      // }
-];
+
 
 
 
 
 
     return (
-        <StudioContext.Provider value={{ ...contextData, 
-        menu: menuData,
-        footerSubscription,
-        footerLinks,
-        footerMenuSegments,
-        footerSocial,
-        siteBrandName,
-        socialLinks,
-        footerCopyright,
-        siteLinks,
-         }}>
+        <StudioContext.Provider value={{
+            ...contextData,
+            menu: siteMenu,
+            // footerSubscription,
+            footerLinks,
+            // footerMenuSegments,
+            footerSocial,
+            siteBrandName,
+            // socialLinks,
+            footerCopyright,
+            // siteLinks,
+            websiteData
+        }}>
             <StudioUpdateContext.Provider value={{ toggleTheme }}>
                 {children}
             </StudioUpdateContext.Provider>

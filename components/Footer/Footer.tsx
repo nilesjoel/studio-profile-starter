@@ -53,7 +53,7 @@ export function Footer() {
   return (
     <FooterContainer>
 
-      {footerSubscription.display && (
+      {footerSubscription && footerSubscription.display && (
         <FooterSubscription>
 
           <FooterSubHeading>

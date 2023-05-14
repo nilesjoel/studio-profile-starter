@@ -67,6 +67,9 @@ export const authOptions = {
       // console.log({ session, token, user })
 
       // console.log(" on session callback---->", { session, token })
+
+
+
       // console.log(session.user)
       // Update Session with Profile & JWT
       // session.profile = token.profile;
@@ -95,7 +98,7 @@ export const authOptions = {
           // console.log("AFTER FETCH",{data})
           token.jwt = data.jwt;
           token.id = data.user.id;
-          token.site = process.env.STUDIO_SITE;
+          token.site = process.env.STUDIO_SITE
           // token.email = data.user.email;
           // token.name = data.user.username;
           // token.image = data.user.avatar.url;
@@ -127,9 +130,9 @@ export const authOptions = {
 
             token.profile = profile;
             token.studioToken = studioToken
-            console.log("RESULTS FROM VERIFY", { token })
+            // console.log({ token })
           })
-          // .catch(error => console.log('error', error));
+          .catch(error => console.log('error', error));
       }
       return token
     }
@@ -137,15 +140,12 @@ export const authOptions = {
   events: {
     async signIn(message) {
       /* on successful sign in */
-      console.log("SIGN IN", "----------------------------------------------", message);
     },
     async signOut(message) { /*on successful sign in */ },
     async createUser(message) {
       /* user created */
     },
-    async linkAccount(message) { /* account linked to a user */
-    console.log("LINK ACCOUNT", "----------------------------------------------", message)
-  },
+    async linkAccount(message) { /* account linked to a user */ },
     async session(message) { /* session is active */ },
     // async error(message) { /* error in authentication flow */ }
   },
