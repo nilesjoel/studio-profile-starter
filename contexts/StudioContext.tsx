@@ -98,7 +98,7 @@ export function StudioContextProvider({ children, state }: StudioContextProvider
                     // console.log(json.error, "error?", json)
                     if (!json.error) {
                         setWebsiteData(json);
-
+console.log({json})
                         const {
                             siteBrandName,
                             metadata,
