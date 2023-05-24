@@ -97,18 +97,18 @@ export function StudioContextProvider({ children, state }: StudioContextProvider
                 .then((json) => {
                     // console.log(json.error, "error?", json)
                     if (!json.error) {
+                       console.log({menus:json.menus})
                         setWebsiteData(json);
-console.log({json})
+
                         const {
                             siteBrandName,
                             metadata,
                             menus
-                        } = json.websiteEntity;
+                        } = json;
                         
                         setSiteMenu(menus);
                         setSiteBrandName(siteBrandName);
                         setSiteMetadata(metadata);
-
                     }
                 })
                 .catch((error) => console.log('An error occurred', error.message));

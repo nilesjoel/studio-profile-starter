@@ -8,17 +8,17 @@ export async function getProfileData(req, res){
     const session = await getSession({ req });
     // console.log("session", {session})
     const token = await getToken({ req })    
-    console.log("fetching..", `${process.env.NEXTAUTH_API}/studio-profile/profile`);
-    console.log("session", {session})
+    // console.log("fetching..", `${process.env.NEXTAUTH_API}/studio-profile/profile`);
+    // console.log("session", {session})
     const response = await fetch(`${process.env.NEXTAUTH_API}/studio-profile/profile`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(token)
+      body: JSON.stringify({token})
     });
     const data = await response.json();
-    console.log("returned", {data})
+    // console.log("returned", {data})
     return data;
   } catch (error) {
     console.log("ERROR", error)

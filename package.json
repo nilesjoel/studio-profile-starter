@@ -9,6 +9,7 @@
     "@rebass/forms": "^4.0.6",
     "@styled-icons/material": "^10.47.0",
     "@styled-icons/styled-icon": "^10.7.0",
+    "chalk": "^5.2.0",
     "chroma-js": "^2.4.2",
     "final-form": "^4.20.9",
     "luxon": "^3.3.0",

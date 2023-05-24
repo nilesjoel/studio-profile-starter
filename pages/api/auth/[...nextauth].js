@@ -4,6 +4,8 @@ import FacebookProvider from "next-auth/providers/facebook"
 import GithubProvider from "next-auth/providers/github"
 import TwitterProvider from "next-auth/providers/twitter"
 import Auth0Provider from "next-auth/providers/auth0"
+import chalk from 'chalk';
+
 // import AppleProvider from "next-auth/providers/apple"
 // import EmailProvider from "next-auth/providers/email"
 
@@ -81,24 +83,42 @@ export const authOptions = {
     },
     async jwt({ token, user, account }) {
 
-      // console.log({"process.env":{ token, user, account }})
 
       const isSignIn = user ? true : false;
       if (isSignIn) {
+        //  console.log({"JWT":{ token, user, account }})
 
+
+
+        // Return previous token if the access token has not expired yet
+        // if (Date.now() < token?.accessTokenExpires) {
+        //   // return token
+        //   console.log(chalk.blueBright("Should return token", "Date.now() < token.accessTokenExpires", Date.now(), token.accessTokenExpires))
+        // }
         try {
-          // console.log("BEFORE FETCH",`${process.env.NEXTAUTH_API}/api/auth/${account.provider}/callback?access_token=${account.access_token}`)
 
+          // console.log("");
+          // console.log("BEFORE FETCH", `${process.env.NEXTAUTH_API}/api/auth/${account.provider}/callback?access_token=${account.access_token}`)
+
+          // console.log("SITE_URL", process.env.STUDIO_SITE)
+          // console.log("TOKEN_SITE", token.site)
+
+          // console.log("");
+          // console.log("");
+          // console.log("------------------------------------");
+          
+          
           const response = await fetch(
             `${process.env.NEXTAUTH_API}/api/auth/${account.provider}/callback?access_token=${account.access_token}`
           );
 
           const data = await response.json();
 
-          // console.log("AFTER FETCH",{data})
+          // console.log("AFTER FETCH", { data })
           token.jwt = data.jwt;
           token.id = data.user.id;
           token.site = process.env.STUDIO_SITE
+          token.acessTokenExpires = Date.now() + account.expires_at
           // token.email = data.user.email;
           // token.name = data.user.username;
           // token.image = data.user.avatar.url;
@@ -106,67 +126,88 @@ export const authOptions = {
           // token.provider = account.provider;
           // token.accessToken = account.access_token;
 
-          var myHeaders = new Headers();
-          myHeaders.append("Content-Type", "application/json");
+          var remainingTime = account.expires_at - Math.floor(Date.now() / 1000);
+          // console.log("Token will expire in " + remainingTime + " seconds.");
 
-          var raw = JSON.stringify({ user, token });
-          var requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-            body: raw,
-            redirect: 'follow'
-          };
+
+
 
         } catch (e) {
           console.log(e)
         }
 
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
 
-        fetch(`${process.env.NEXTAUTH_API}/studio-profile/verify`, requestOptions)
-          .then(response => response.text())
-          .then(result => {
-            // console.log(JSON.parse(result))
-            const { profile, studioToken } = JSON.parse(result);
+        var raw = JSON.stringify({ user, token });
+        var requestOptions = {
+          method: 'POST',
+          headers: myHeaders,
+          body: raw,
+          redirect: 'follow'
+        };
+          fetch(`${process.env.NEXTAUTH_API}/studio-profile/verify`, requestOptions)
+            .then(response => response.text())
+            .then(result => {
+              // console.log(JSON.parse(result))
+              const { profile, studioToken } = JSON.parse(result);
 
-            token.profile = profile;
-            token.studioToken = studioToken
-            // console.log({ token })
-          })
-          .catch(error => console.log('error', error));
+              token.profile = profile;
+              token.studioToken = studioToken
+              // console.log({ token })
+            })
+            .catch(error => console.log('error', error));
+        }
+
+
+
+
+
+
+
+
+
+
+
+        return token
       }
-      return token
-    }
-  },
-  events: {
-    async signIn(message) {
-      /* on successful sign in */
     },
-    async signOut(message) { /*on successful sign in */ },
-    async createUser(message) {
-      /* user created */
+    events: {
+      async signIn(message) {
+        /* on successful sign in */
+      },
+      async signOut(message) { /*on successful sign in */ },
+      async createUser(message) {
+        /* user created */
+      },
+      async linkAccount(message) { /* account linked to a user */
+    
+    console.log("LINK ACCOUNT", {message})},
+
+      async session(message) { /* session is active */ },
+      async error(message) {
+        console.log("ERROR", { message });
+        /* error in authentication flow */
+      }
     },
-    async linkAccount(message) { /* account linked to a user */ },
-    async session(message) { /* session is active */ },
-    // async error(message) { /* error in authentication flow */ }
-  },
-  pages: {
-    signIn: "/auth/signin",
-    signOut: '/auth/signout',
-    error: '/auth/error', // Error code passed in query string as ?error=
-    verifyRequest: '/auth/verify', // (used for check email message)
-    newUser: null // If set, new users will be directed here on first sign in
-  },
-  logger: {
-    error(code, metadata) {
-      console.error(code, metadata)
+    pages: {
+      signIn: "/auth/signin",
+      signOut: '/auth/signout',
+      error: '/auth/error', // Error code passed in query string as ?error=
+      verifyRequest: '/auth/verify', // (used for check email message)
+      newUser: null // If set, new users will be directed here on first sign in
     },
-    warn(code) {
-      console.warn(code)
-    },
-    debug(code, metadata) {
-      console.debug(code, metadata)
+    logger: {
+      error(code, metadata) {
+        // console.error(code, metadata)
+      },
+      warn(code) {
+        // console.warn(code)
+      },
+      debug(code, metadata) {
+        // console.debug(code, metadata)
+      }
     }
   }
-}
 
 export default NextAuth(authOptions)

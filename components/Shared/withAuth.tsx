@@ -15,7 +15,7 @@ const withAuth = <P extends object>(
 
     useEffect(() => {
         
-        console.log({router, status})
+        console.log({status})
         console.log(router.asPath !== '/api/auth/signin', router.asPath.split('?')[0], router.asPath.split('?')[0] ==='/auth/signin' )
 
         //  Redirect the user to the login page if they're not authenticated

@@ -54,13 +54,13 @@ const WorkoutsPage = ({
 
     const handleDelete = async (e, id) => {
         e.preventDefault();
-        console.log('delete', id);
+        // console.log('delete', id);
         try {
             const res = await fetch(`/api/breathwork/workouts/${id}`, {
                 method: 'DELETE',
             });
             const data = await res.json();
-            console.log(data);
+            // console.log(data);
             refreshData();
         } catch (error) {
             console.log(error);
@@ -81,13 +81,13 @@ const WorkoutsPage = ({
     const workoutPanel = (workout) => {
 
         const isComplete = (completed) => {
-            console.log(completed);
+            // console.log(completed);
             const date = new Date(completed);
-            console.log({ date });
+            // console.log({ date });
             // Format the date string
             const formattedString = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}/${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
 
-            console.log(formattedString);
+            // console.log(formattedString);
 
             return formattedString;
         }

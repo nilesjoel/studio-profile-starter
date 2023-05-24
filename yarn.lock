@@ -808,6 +808,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"chalk@npm:^5.2.0":
+  version: 5.2.0
+  resolution: "chalk@npm:5.2.0"
+  checksum: 03d8060277de6cf2fd567dc25fcf770593eb5bb85f460ce443e49255a30ff1242edd0c90a06a03803b0466ff0687a939b41db1757bec987113e83de89a003caa
+  languageName: node
+  linkType: hard
+
 "chroma-js@npm:^2.4.2":
   version: 2.4.2
   resolution: "chroma-js@npm:2.4.2"
@@ -1733,6 +1740,7 @@ __metadata:
     "@types/react": ^18.0.14
     "@types/react-dom": ^18.0.5
     "@types/styled-components": ^5.1.25
+    chalk: ^5.2.0
     chroma-js: ^2.4.2
     final-form: ^4.20.9
     luxon: ^3.3.0

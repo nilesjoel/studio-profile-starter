@@ -14,7 +14,7 @@ export async function getProfileWorkouts(req, res) {
       body: JSON.stringify(token)
     });
     const data = await response.json();
-    console.log("getBYPROFILE---------------- ", data)
+    // console.log("getBYPROFILE---------------- ", data)
     return data;
   } catch (error) {
     console.log("ERROR", error)

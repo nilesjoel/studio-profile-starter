@@ -20,7 +20,7 @@ const ProfilePage = ({
 
     const { loginCount, breath, market, social, poetry } = profileData;
 
-
+console.log({profileData})
 
     return (<DualPanelLayout
         leftPanel={
