@@ -80,13 +80,14 @@ export function StudioContextProvider({ children, state }: StudioContextProvider
 
     // fetch a context from Studio Symmetries API
     useEffect(() => {
-        const fetchUser = () => {
+
+        const fetchProfileMenu = () => {
             fetch(`/api/profile/menu`)
                 .then((response) => response.json())
                 .then((json) => {
                     // console.log(json.error, "error?", json)
                     if (!json.error) {
-                        setMenuData(json);
+                        setSiteMenu(json);
                     }
                 })
                 .catch((error) => console.log('An error occurred', error.message));
@@ -114,7 +115,7 @@ export function StudioContextProvider({ children, state }: StudioContextProvider
                 .catch((error) => console.log('An error occurred', error.message));
         };
         fetchWebContext();
-        // fetchUser();
+        fetchProfileMenu();
     }, []);
 
 
